@@ -5,7 +5,7 @@ function Home() {
     return (
         <>
             <Navbar />
-            <div>
+            <div className='mt-24'>
 
 
             </div>
