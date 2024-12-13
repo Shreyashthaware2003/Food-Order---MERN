@@ -6,9 +6,19 @@ function Home() {
     return (
         <>
             <Navbar />
-            <div className='mt-24 max-w-[1280px] mx-auto'>
-                <Card />
+            <div className='mt-32 max-w-[1280px] mx-auto'>
 
+                <div className='grid sm:grid-cols-3 md:grid-cols-5 items-center justify-center gap-8'>
+                    <Card />
+                    <Card />
+                    <Card />
+                    <Card />
+                    <Card />
+                    <Card />
+                    <Card />
+                    <Card />
+                    <Card />
+                </div>
             </div>
             <Footer />
         </>

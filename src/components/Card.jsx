@@ -4,8 +4,8 @@ function Card() {
     return (
         <>
             {/* cards */}
-            <div className='flex flex-col flex-nowrap border-2 border-black w-64 p-4 space-y-4'>
-                <img src=".." alt="" />
+            <div className='flex flex-col flex-nowrap border-2 border-black w-64 p-4 space-y-4 rounded-xl'>
+                <img src=".." alt="img" />
                 <h5>Card title</h5>
                 <p>Lorem ipsum dolor sit amet.</p>
                 <div className='  flex flex-nowrap justify-center items-center gap-4'>
