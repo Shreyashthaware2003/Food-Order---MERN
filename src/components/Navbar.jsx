@@ -1,11 +1,13 @@
 import '../App.css'
 import React, { useState } from "react";
+import { Link } from 'react-router-dom';
 import { FaSearch } from "react-icons/fa";
 import { FaBasketShopping } from "react-icons/fa6";
 import { PiSignInBold } from "react-icons/pi";
 import { LuUserRoundPen } from "react-icons/lu";
 import { FaBars } from "react-icons/fa";
 import { FaTimes } from "react-icons/fa";
+import SignIn from '../screens/SignIn';
 
 function Navbar() {
 
@@ -42,10 +44,10 @@ function Navbar() {
                             <ul className="flex justify-center items-center gap-8 cursor-pointer font-semibold capitalize" style={{
                                 animation: isSearchOpen ? "slideInFromRight 0.3s ease-in-out" : "slideOutToRight 0.3s ease-in-out",
                             }}>
-                                <li>home</li>
-                                <li>menu</li>
-                                <li>service</li>
-                                <li>shop</li>
+                                <Link>home</Link >
+                                <Link>menu</Link>
+                                <Link>service</Link>
+                                <Link>shop</Link>
                             </ul>
                         </div>
 
@@ -74,14 +76,14 @@ function Navbar() {
 
                         {/* SignUp/SignIn Buttons */}
                         <div className="hidden md:flex flex-nowrap justify-center items-center gap-4">
-                            <button className="flex flex-nowrap justify-center items-center gap-2 border border-black rounded-full px-3 py-2 text-sm font-semibold hover:scale-105 duration-500 hover:bg-red-600 hover:text-white">
+                            <Link to={'SignUp'} className="flex flex-nowrap justify-center items-center gap-2 border border-black rounded-full px-3 py-2 text-sm font-semibold hover:scale-105 duration-500 hover:bg-red-600 hover:text-white">
                                 <LuUserRoundPen />
                                 SignUp
-                            </button>
-                            <button className="flex flex-nowrap justify-center items-center gap-2 border border-black rounded-full px-3 py-2 text-sm bg-yellow-200 font-semibold hover:scale-105 duration-500">
+                            </Link>
+                            <Link to={'SignIn'} className="flex flex-nowrap justify-center items-center gap-2 border border-black rounded-full px-3 py-2 text-sm bg-yellow-200 font-semibold hover:scale-105 duration-500">
                                 <PiSignInBold />
                                 SignIn
-                            </button>
+                            </Link>
                         </div>
 
                         {/* Hamburger Menu for Mobile */}
@@ -104,10 +106,10 @@ function Navbar() {
                         }}
                     >
                         <ul className="flex flex-col justify-center items-center gap-4 font-semibold capitalize">
-                            <li>home</li>
-                            <li>menu</li>
-                            <li>service</li>
-                            <li>shop</li>
+                            <Link>home</Link>
+                            <Link>menu</Link>
+                            <Link>service</Link>
+                            <Link>shop</Link>
                         </ul>
 
                         <div className="flex flex-col gap-4 mt-4">
