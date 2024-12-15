@@ -76,11 +76,11 @@ function Navbar() {
 
                         {/* SignUp/SignIn Buttons */}
                         <div className="hidden md:flex flex-nowrap justify-center items-center gap-4">
-                            <Link to={'SignUp'} className="flex flex-nowrap justify-center items-center gap-2 border border-black rounded-full px-3 py-2 text-sm font-semibold hover:scale-105 duration-500 hover:bg-red-600 hover:text-white">
+                            <Link to={'/signup'} className="flex flex-nowrap justify-center items-center gap-2 border border-black rounded-full px-3 py-2 text-sm font-semibold hover:scale-105 duration-500 hover:bg-red-600 hover:text-white">
                                 <LuUserRoundPen />
                                 SignUp
                             </Link>
-                            <Link to={'SignIn'} className="flex flex-nowrap justify-center items-center gap-2 border border-black rounded-full px-3 py-2 text-sm bg-yellow-200 font-semibold hover:scale-105 duration-500">
+                            <Link to={'/signin'} className="flex flex-nowrap justify-center items-center gap-2 border border-black rounded-full px-3 py-2 text-sm bg-yellow-200 font-semibold hover:scale-105 duration-500">
                                 <PiSignInBold />
                                 SignIn
                             </Link>
@@ -92,7 +92,7 @@ function Navbar() {
                                 className="text-2xl"
                                 onClick={toggleMenu}
                             >
-                               {isMenuOpen ? <FaTimes /> : <FaBars />}
+                                {isMenuOpen ? <FaTimes /> : <FaBars />}
                             </button>
                         </div>
                     </div>
@@ -113,11 +113,11 @@ function Navbar() {
                         </ul>
 
                         <div className="flex flex-col gap-4 mt-4">
-                            <Link to={'SignUp'} className="flex justify-center items-center gap-2 border border-black rounded-full px-3 py-2 text-sm font-semibold hover:scale-105 duration-500 hover:bg-red-600 hover:text-white">
+                            <Link to={'/signup'} className="flex justify-center items-center gap-2 border border-black rounded-full px-3 py-2 text-sm font-semibold hover:scale-105 duration-500 hover:bg-red-600 hover:text-white">
                                 <LuUserRoundPen />
                                 SignUp
                             </Link>
-                            <Link to={'SignIn'} className="flex justify-center items-center gap-2 border border-black rounded-full px-3 py-2 text-sm bg-yellow-200 font-semibold hover:scale-105 duration-500">
+                            <Link to={'/signin'} className="flex justify-center items-center gap-2 border border-black rounded-full px-3 py-2 text-sm bg-yellow-200 font-semibold hover:scale-105 duration-500">
                                 <PiSignInBold />
                                 SignIn
                             </Link>
