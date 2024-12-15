@@ -113,14 +113,14 @@ function Navbar() {
                         </ul>
 
                         <div className="flex flex-col gap-4 mt-4">
-                            <button className="flex justify-center items-center gap-2 border border-black rounded-full px-3 py-2 text-sm font-semibold hover:scale-105 duration-500 hover:bg-red-600 hover:text-white">
+                            <Link to={'SignUp'} className="flex justify-center items-center gap-2 border border-black rounded-full px-3 py-2 text-sm font-semibold hover:scale-105 duration-500 hover:bg-red-600 hover:text-white">
                                 <LuUserRoundPen />
                                 SignUp
-                            </button>
-                            <button className="flex justify-center items-center gap-2 border border-black rounded-full px-3 py-2 text-sm bg-yellow-200 font-semibold hover:scale-105 duration-500">
+                            </Link>
+                            <Link to={'SignIn'} className="flex justify-center items-center gap-2 border border-black rounded-full px-3 py-2 text-sm bg-yellow-200 font-semibold hover:scale-105 duration-500">
                                 <PiSignInBold />
                                 SignIn
-                            </button>
+                            </Link>
                         </div>
                     </div>
                 )}
