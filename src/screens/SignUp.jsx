@@ -20,54 +20,58 @@ function SignUp() {
 
   return (
     <>
-      <div className="bg-gray-200 flex justify-center items-center h-screen">
-        <div className="shadow-2xl bg-white grid grid-cols-2 flex-nowrap rounded-md" >
+      <div className="bg-gray-200 flex justify-center items-center h-screen p-4">
+        <div className="shadow-2xl bg-white grid grid-cols-1 md:grid-cols-2 flex-nowrap rounded-md w-[330px] md:w-[800px]" >
           {/* Form Section */}
-          <div className="flex flex-col justify-center items-center w-[400px] p-4 h-[600px]">
-            <h1 className="text-2xl font-bold tracking-wide py-6">
-              Create new account
+          <div className="flex flex-col justify-center items-center p-6 w-full md:order-1 order-2">
+            <h1 className="text-lg md:text-2xl font-bold tracking-wide mb-6">
+              Create New Account
             </h1>
-            <div className="flex flex-col justify-center flex-nowrap w-56 space-y-4">
-              <div className="flex flex-col flex-nowrap">
-                <span>Name</span>
+            <div className="flex flex-col w-full max-w-xs space-y-4">
+              <div className="flex flex-col">
+                <label htmlFor="name">Name</label>
                 <input
+                  id="name"
                   type="text"
                   className="border-b border-blue-600 py-1 px-2"
                 />
               </div>
-              <div className="flex flex-col flex-nowrap">
-                <span>Email</span>
+              <div className="flex flex-col">
+                <label htmlFor="email">Email</label>
                 <input
+                  id="email"
                   type="email"
                   className="border-b border-blue-600 py-1 px-2"
                 />
               </div>
-              <div className="flex flex-col flex-nowrap">
-                <span>Password</span>
+              <div className="flex flex-col">
+                <label htmlFor="password">Password</label>
                 <input
+                  id="password"
                   type="password"
                   className="border-b border-blue-600 py-1 px-2"
                 />
               </div>
-              <div className="flex flex-col flex-nowrap justify-center items-center py-4 space-y-2 ">
-                <button className="border rounded-full py-1 px-2 font-medium hover:scale-105 duration-500 w-full bg-gradient-to-r from-blue-500 via-blue-500 to-blue-600 text-white">
-                  SignUp
+              <div className="flex flex-col items-center pt-6">
+                <button className="w-full bg-gradient-to-r from-blue-500 to-blue-600 text-white py-2 rounded-full font-medium hover:scale-105 transition-transform">
+                  Sign Up
                 </button>
-                <div className="text-sm space-x-2">
-                  <span>Already have an account?</span>
+                <p className="text-sm mt-4">
+                  Already have an account?{" "}
                   <Link
                     to={"SignIn"}
-                    className="text-blue-600 font-medium hover:text-blue-700 hover:underline"
+                    className="text-blue-600 font-medium hover:underline"
                   >
-                    Signin
+                    Sign In
                   </Link>
-                </div>
+                </p>
               </div>
             </div>
           </div>
 
+
           {/* Carousel Section */}
-          <div className="relative w-[400px] h-[600px] overflow-hidden rounded-r-md">
+          <div className="relative w-full h-48 sm:h-56 md:w-[400px] md:h-[600px] overflow-hidden rounded-t-md md:rounded-r-md md:order-2 order-1">
             <div
               className="flex transition-transform duration-500"
               style={{
@@ -79,24 +83,23 @@ function SignUp() {
                   key={index}
                   src={image}
                   alt={`Slide ${index + 1}`}
-                  className="w-full h-full object-cover"
+                  className=" h-full w-full object-cover"
                 />
               ))}
             </div>
             {/* Indicators */}
-            <div className="absolute bottom-4 right-0 transform -translate-x-1/2 flex gap-2">
+            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2">
               {images.map((_, index) => (
                 <button
                   key={index}
                   onClick={() => setCurrentIndex(index)}
-                  className={`w-3 h-3 rounded-full ${currentIndex === index
-                      ? "bg-blue-500"
-                      : "bg-gray-300"
+                  className={`w-3 h-3 rounded-full ${currentIndex === index ? "bg-blue-500" : "bg-gray-300"
                     }`}
                 ></button>
               ))}
             </div>
           </div>
+
         </div>
       </div>
     </>
