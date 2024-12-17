@@ -14,7 +14,7 @@ function SignIn() {
     e.preventDefault();
     const response = await fetch("http://localhost:3000/api/loginuser", {
       method: 'POST',
-      headers: {  
+      headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({ email: credentials.email, password: credentials.password })
@@ -24,6 +24,7 @@ function SignIn() {
     console.log(json);
 
     if (json.success) {
+      localStorage.setItem("authToken", json.authToken);
       navigate("/");
     }
 
