@@ -1,6 +1,6 @@
 import '../App.css'
 import React, { useState } from "react";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FaSearch } from "react-icons/fa";
 import { FaBasketShopping } from "react-icons/fa6";
 import { PiSignInBold } from "react-icons/pi";
@@ -26,6 +26,15 @@ function Navbar() {
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
     };
+
+    // logout functionality
+
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+        localStorage.removeItem("authToken");
+        navigate("/signin");
+    }
 
     return (
         <>
@@ -105,7 +114,7 @@ function Navbar() {
                                     <div className="flex justify-center items-center gap-2 border border-black rounded-full px-3 py-2 text-sm font-semibold hover:scale-105 duration-500 hover:bg-yellow-200 cursor-pointer">
                                         My Cart <FaBasketShopping />
                                     </div>
-                                    <div className="flex justify-center items-center gap-2 border border-black rounded-full px-3 py-2 text-sm font-semibold hover:scale-105 duration-500 hover:bg-red-600 hover:text-white cursor-pointer">
+                                    <div className="flex justify-center items-center gap-2 border border-black rounded-full px-3 py-2 text-sm font-semibold hover:scale-105 duration-500 hover:bg-red-600 hover:text-white cursor-pointer" onClick={handleLogout}>
                                         Logout <RiLogoutBoxLine />
                                     </div>
                                 </>
@@ -163,7 +172,7 @@ function Navbar() {
                                     <div className="flex justify-center items-center gap-2 border border-black rounded-full px-3 py-2 text-sm font-semibold hover:scale-105 duration-500 hover:bg-yellow-200 cursor-pointer">
                                         My Cart <FaBasketShopping />
                                     </div>
-                                    <div className="flex justify-center items-center gap-2 border border-black rounded-full px-3 py-2 text-sm font-semibold hover:scale-105 duration-500 hover:bg-red-600 hover:text-white cursor-pointer">
+                                    <div className="flex justify-center items-center gap-2 border border-black rounded-full px-3 py-2 text-sm font-semibold hover:scale-105 duration-500 hover:bg-red-600 hover:text-white cursor-pointer" onClick={handleLogout}>
                                         Logout <RiLogoutBoxLine />
                                     </div>
                                 </>
