@@ -1,13 +1,23 @@
 import React from 'react'
 
-function Card() {
+function Card(props) {
+
+    let options = props.options;
+    let priceOptions = Object.keys(options);
+
+
     return (
         <>
             {/* cards */}
             <div className='flex flex-col flex-nowrap border-2 border-black w-64 p-4 space-y-4 rounded-xl'>
-                <img src=".." alt="img" />
-                <h5>Card title</h5>
-                <p>Lorem ipsum dolor sit amet.</p>
+                <img
+                    src={props.imgSrc}
+                    className=" h-24 sm:h-28  md:h-36 object-cover rounded-lg"
+                    alt="img"
+                />
+
+                <h5>{props.foodName}</h5>
+                <p>{props.description}</p>
                 <div className='  flex flex-nowrap justify-center items-center gap-4'>
                     <select className=" border-black border rounded-md">
                         {Array.from(Array(6), (e, i) => {
@@ -17,8 +27,9 @@ function Card() {
                         })}
                     </select>
                     <select className="rounded-md border border-black">
-                        <option value={'half'}>Half</option>
-                        <option value={'full'}>Full</option>
+                        {priceOptions.map((data) => {
+                            return <option key={data} value={data}>{data}</option>
+                        })}
                     </select>
 
                     <div>

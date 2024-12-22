@@ -47,9 +47,14 @@ function Home() {
                                         <div className='grid sm:grid-cols-2 md:grid-cols-4 gap-8'>
 
                                             {foodItem.length !== 0 ? foodItem.filter((item) => item.CategoryName === data.CategoryName
-                                            ).map(filterItems => {
+                                            ) .map(filterItems => {
                                                 return (
-                                                    <div key={filterItems._id}><Card></Card></div>
+                                                    <div key={filterItems._id}><Card foodName={filterItems.name}
+                                                        options={filterItems.options[0]}
+                                                        imgSrc={filterItems.img}
+                                                        description={filterItems.description}
+
+                                                    ></Card></div>
                                                 )
                                             }) : (
                                                 <div>No such data</div>
