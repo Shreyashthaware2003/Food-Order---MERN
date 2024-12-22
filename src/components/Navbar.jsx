@@ -1,4 +1,4 @@
-import '../App.css'
+import '../App.css';
 import React, { useState } from "react";
 import { Link, useNavigate } from 'react-router-dom';
 import { FaSearch } from "react-icons/fa";
@@ -7,186 +7,164 @@ import { PiSignInBold } from "react-icons/pi";
 import { LuUserRoundPen } from "react-icons/lu";
 import { FaBars } from "react-icons/fa";
 import { FaTimes } from "react-icons/fa";
-// import SignIn from '../screens/SignIn';
 import { RiLogoutBoxLine } from "react-icons/ri";
 
 function Navbar() {
 
     // Search
     const [isSearchOpen, setIsSearchOpen] = useState(false);
-
-    const toggleSearchInput = () => {
-        setIsSearchOpen(!isSearchOpen);
-    };
-
+    const toggleSearchInput = () => setIsSearchOpen(!isSearchOpen);
 
     // Menu
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
-    const toggleMenu = () => {
-        setIsMenuOpen(!isMenuOpen);
-    };
-
-    // logout functionality
-
+    // Logout functionality
     const navigate = useNavigate();
-
     const handleLogout = () => {
         localStorage.removeItem("authToken");
         navigate("/signin");
-    }
+    };
 
     return (
         <>
-            <div className="max-w-[1280px] mx-auto tracking-wider">
-                <div className="fixed top-0 left-0 w-full px-6 md:px-24 bg-white shadow-md z-50">
-                    <div className="grid grid-cols-2  md:grid-cols-3 items-center py-4 px-4 gap-4">
-                        {/* Logo */}
-                        <div className="flex items-center">
-                            <h1 className="flex flex-nowrap justify-center items-center font-bold text-3xl">
-                                <span>f</span>
-                                <span className="text-red-600">o</span>
-                                <span>c</span>
-                                <span className="text-red-600">o</span>
+            <div className="relative w-full tracking-wider">
+                {/* Background Image with Orange Overlay */}
+                <div className="relative w-full h-screen">
+                    <img src="bg.webp" alt="Background" className="absolute top-0 left-0 w-full h-full object-cover" />
+                    <div className="absolute top-0 left-0 w-full h-full bg-orange-600 md:opacity-0"></div> {/* Orange overlay */}
+                </div>
+
+                {/* Navbar */}
+                <div className="absolute top-0 left-0 w-full px-2 md:px-6 z-50">
+                    <div className="flex items-center justify-between py-4 px-4 bg-transparent">
+                        <div className="hidden md:block"></div>
+
+                        {/* Logo at the Center */}
+                        <div className="flex justify-start md:justify-center items-center w-96 md:pl-56 gap-2">
+                            <img src="dash.png" className="w-10" alt="" />
+                            <h1 className="font-bold text-2xl text-white uppercase tracking-widest">
+                                doordash
                             </h1>
                         </div>
 
-                        {/* Navigation Menu */}
-                        <div className="hidden md:flex justify-center items-center">
-                            <ul
-                                className="flex justify-center items-center gap-8 cursor-pointer font-semibold capitalize"
-                                style={{
-                                    animation: isSearchOpen
-                                        ? "slideInFromRight 0.3s ease-in-out"
-                                        : "slideOutToRight 0.3s ease-in-out",
-                                }}
-                            >
-                                <Link>home</Link>
-                                {/* <Link>menu</Link>
-                                <Link>service</Link>
-                                <Link>shop</Link> */}
-                                {localStorage.getItem("authToken") && <Link>My Orders</Link>}
-                            </ul>
-                        </div>
+                        {/* Navigation Menu and Buttons */}
+                        <div className="flex items-center gap-4">
+                            <div className="hidden md:flex">
+                                <ul className="flex justify-center items-center gap-8 cursor-pointer font-semibold capitalize text-white">
+                                    {localStorage.getItem("authToken") && <Link>My Orders</Link>}
+                                </ul>
+                            </div>
 
-                        {/* Search and Cart Icons */}
-                        {/* <div className="flex justify-center items-center text-lg gap-6">
-                            <input
-                                type="text"
-                                placeholder="Search..."
-                                className="hidden md:block w-40 border-2 border-black rounded-full px-2 py-1 transition-all duration-300 ease-in-out"
-                            />
-                            {isSearchOpen && (
-                                <input
-                                    type="text"
-                                    placeholder="Search..."
-                                    className="border-2 border-black rounded-full px-2 py-1 transition-all duration-300 ease-in-out"
-                                    style={{
-                                        animation: isSearchOpen
-                                            ? "slideInFromRight 0.3s ease-in-out"
-                                            : "slideOutToRight 0.3s ease-in-out",
-                                    }}
-                                />
-                            )}
-                        </div> */}
+                            <div className="hidden md:flex items-center gap-4">
+                                {!localStorage.getItem("authToken") ? (
+                                    <>
+                                        <Link
+                                            to="/signup"
+                                            className="flex justify-center items-center gap-2 border border-white rounded-full px-3 py-2 text-sm font-semibold hover:scale-105 duration-500 hover:bg-white hover:text-black text-white"
+                                        >
+                                            <LuUserRoundPen />
+                                            SignUp
+                                        </Link>
+                                        <Link
+                                            to="/signin"
+                                            className="flex justify-center items-center gap-2 border border-white rounded-full px-3 py-2 text-sm bg-yellow-200 font-semibold hover:scale-105 duration-500 text-black"
+                                        >
+                                            <PiSignInBold />
+                                            SignIn
+                                        </Link>
+                                    </>
+                                ) : (
+                                    <>
+                                        <div className="flex justify-center items-center gap-2 border border-white rounded-full px-3 py-2 text-sm font-semibold hover:scale-105 duration-500 hover:bg-white cursor-pointer text-white hover:text-black">
+                                            My Cart <FaBasketShopping />
+                                        </div>
+                                        <div
+                                            className="flex justify-center items-center gap-2 border border-white rounded-full px-3 py-2 text-sm font-semibold hover:scale-105 duration-500 bg-red-600 hover:text-white cursor-pointer text-white"
+                                            onClick={handleLogout}
+                                        >
+                                            Logout <RiLogoutBoxLine />
+                                        </div>
+                                    </>
+                                )}
+                            </div>
 
-                        {/* SignUp/SignIn or My Cart/Logout */}
-                        <div className="hidden md:flex justify-end items-center gap-4">
-                            {!localStorage.getItem("authToken") ? (
-                                <>
-                                    <Link
-                                        to={"/signup"}
-                                        className="flex justify-center items-center gap-2 border border-black rounded-full px-3 py-2 text-sm font-semibold hover:scale-105 duration-500 hover:bg-red-600 hover:text-white"
+                            {/* Hamburger Menu for Mobile */}
+                            <div className="md:hidden relative">
+                                <button className="text-2xl text-white my-2" onClick={toggleMenu}>
+                                    {isMenuOpen ? <FaTimes /> : <FaBars />}
+                                </button>
+
+                                {/* Mobile Menu */}
+                                {isMenuOpen && (
+                                    <div
+                                        className="absolute top-10 right-0 p-4 shadow-xl rounded-md bg-white w-56 text-black transition-all duration-300 z-60"
+                                        style={{
+                                            animation: isMenuOpen
+                                                ? "slideDown 0.3s ease-in-out"
+                                                : "slideUp 0.9s ease-in-out",
+                                        }}
                                     >
-                                        <LuUserRoundPen />
-                                        SignUp
-                                    </Link>
-                                    <Link
-                                        to={"/signin"}
-                                        className="flex justify-center items-center gap-2 border border-black rounded-full px-3 py-2 text-sm bg-yellow-200 font-semibold hover:scale-105 duration-500"
-                                    >
-                                        <PiSignInBold />
-                                        SignIn
-                                    </Link>
-                                </>
-                            ) : (
-                                <>
-                                    <div className="flex justify-center items-center gap-2 border border-black rounded-full px-3 py-2 text-sm font-semibold hover:scale-105 duration-500 hover:bg-yellow-200 cursor-pointer">
-                                        My Cart <FaBasketShopping />
-                                    </div>
-                                    <div className="flex justify-center items-center gap-2 border border-black rounded-full px-3 py-2 text-sm font-semibold hover:scale-105 duration-500 hover:bg-red-600 hover:text-white cursor-pointer" onClick={handleLogout}>
-                                        Logout <RiLogoutBoxLine />
-                                    </div>
-                                </>
-                            )}
-                        </div>
+                                        <ul className="flex flex-col justify-center items-center gap-4 font-semibold capitalize">
+                                            <Link>home</Link>
+                                            {localStorage.getItem("authToken") && <Link>My Orders</Link>}
+                                        </ul>
 
-                        {/* Hamburger Menu for Mobile */}
-                        <div className="flex justify-end items-center md:hidden">
-                            <button
-                                className="text-2xl"
-                                onClick={toggleMenu}
-                            >
-                                {isMenuOpen ? <FaTimes /> : <FaBars />}
-                            </button>
+                                        <div className="flex flex-col gap-4 mt-4">
+                                            {!localStorage.getItem("authToken") ? (
+                                                <>
+                                                    <Link
+                                                        to="/signup"
+                                                        className="flex justify-center items-center gap-2 border border-black rounded-full px-3 py-2 text-sm font-semibold hover:scale-105 duration-500 hover:bg-red-600 hover:text-white"
+                                                    >
+                                                        <LuUserRoundPen />
+                                                        SignUp
+                                                    </Link>
+                                                    <Link
+                                                        to="/signin"
+                                                        className="flex justify-center items-center gap-2 border border-black rounded-full px-3 py-2 text-sm bg-yellow-200 font-semibold hover:scale-105 duration-500"
+                                                    >
+                                                        <PiSignInBold />
+                                                        SignIn
+                                                    </Link>
+                                                </>
+                                            ) : (
+                                                <>
+                                                    <div className="flex justify-center items-center gap-2 border border-black rounded-full px-3 py-2 text-sm font-semibold hover:scale-105 duration-500 hover:bg-yellow-200 cursor-pointer">
+                                                        My Cart <FaBasketShopping />
+                                                    </div>
+                                                    <div
+                                                        className="flex justify-center items-center gap-2 border border-black rounded-full px-3 py-2 text-sm font-semibold hover:scale-105 duration-500 hover:bg-red-600 hover:text-white cursor-pointer"
+                                                        onClick={handleLogout}
+                                                    >
+                                                        Logout <RiLogoutBoxLine />
+                                                    </div>
+                                                </>
+                                            )}
+                                        </div>
+                                    </div>
+                                )}
+                            </div>
                         </div>
                     </div>
-
-
                 </div>
-                {/* Mobile Menu */}
-                {isMenuOpen && (
-                    <div
-                        className={`md:hidden p-4 mt-24 shadow-xl rounded-md mx-4 bg-white transition-all duration-300 `} style={{
-                            animation: isMenuOpen ? 'slideDown 0.3s ease-in-out' : 'slideUp 0.9s ease-in-out',
-                        }}
-                    >
-                        <ul className="flex flex-col justify-center items-center gap-4 font-semibold capitalize">
-                            <Link>home</Link>
-                            {/* <Link>menu</Link>
-                            <Link>service</Link>
-                            <Link>shop</Link> */}
-                            {localStorage.getItem("authToken") && <Link>My Orders</Link>}
-                        </ul>
 
-                        <div className="flex flex-col gap-4 mt-4">
-                            {!localStorage.getItem("authToken") ? (
-                                <>
-                                    <Link
-                                        to={'/signup'}
-                                        className="flex justify-center items-center gap-2 border border-black rounded-full px-3 py-2 text-sm font-semibold hover:scale-105 duration-500 hover:bg-red-600 hover:text-white"
-                                    >
-                                        <LuUserRoundPen />
-                                        SignUp
-                                    </Link>
-                                    <Link
-                                        to={'/signin'}
-                                        className="flex justify-center items-center gap-2 border border-black rounded-full px-3 py-2 text-sm bg-yellow-200 font-semibold hover:scale-105 duration-500"
-                                    >
-                                        <PiSignInBold />
-                                        SignIn
-                                    </Link>
-                                </>
-                            ) : (
-                                <>
-                                    <div className="flex justify-center items-center gap-2 border border-black rounded-full px-3 py-2 text-sm font-semibold hover:scale-105 duration-500 hover:bg-yellow-200 cursor-pointer">
-                                        My Cart <FaBasketShopping />
-                                    </div>
-                                    <div className="flex justify-center items-center gap-2 border border-black rounded-full px-3 py-2 text-sm font-semibold hover:scale-105 duration-500 hover:bg-red-600 hover:text-white cursor-pointer" onClick={handleLogout}>
-                                        Logout <RiLogoutBoxLine />
-                                    </div>
-                                </>
-                            )}
-                        </div>
-
-                    </div>
-                )}
-
-            </div >
+                {/* Text Centered on Image */}
+                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col justify-center items-center w-full px-4 sm:px-0 gap-4 text-white">
+                    <h2 className="text-xl sm:text-3xl font-bold text-center w-full">
+                        Order your favorite food and get it delivered.
+                    </h2>
+                    <Link className="border rounded-full border-white px-3 py-2 font-bold hover:scale-105 duration-500 text-center sm:w-auto">
+                        Order now
+                    </Link>
+                </div>
 
 
+
+
+            </div>
         </>
-    )
+    );
 }
 
-export default Navbar
+export default Navbar;

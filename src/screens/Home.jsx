@@ -33,8 +33,7 @@ function Home() {
     return (
         <>
             <Navbar />
-            <div className='mt-32 max-w-[1280px] mx-auto'>
-
+            <div className='w-full'>
                 <div className='grid  grid-cols-1 items-center justify-center gap-8'>
 
                     {
@@ -47,7 +46,7 @@ function Home() {
                                         <div className='grid sm:grid-cols-2 md:grid-cols-4 gap-8'>
 
                                             {foodItem.length !== 0 ? foodItem.filter((item) => item.CategoryName === data.CategoryName
-                                            ) .map(filterItems => {
+                                            ).map(filterItems => {
                                                 return (
                                                     <div key={filterItems._id}><Card foodName={filterItems.name}
                                                         options={filterItems.options[0]}
