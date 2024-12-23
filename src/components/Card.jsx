@@ -9,7 +9,7 @@ function Card(props) {
     return (
         <>
             {/* cards */}
-            <div className='flex flex-col flex-nowrap border-2 border-black w-64 p-4 space-y-4 rounded-xl'>
+            <div className='flex flex-col flex-nowrap shadow-lg w-64 p-4 space-y-4 rounded-xl'>
                 <img
                     src={props.imgSrc}
                     className=" h-24 sm:h-28  md:h-36 object-cover rounded-lg"

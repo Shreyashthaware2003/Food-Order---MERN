@@ -26,6 +26,15 @@ function Navbar() {
         navigate("/signin");
     };
 
+    // order now functionality
+    const handleOrderClick = () => {
+        if (!localStorage.getItem('authToken')) {
+            // Redirect to the login page if the user is not logged in
+            navigate('/signin');
+        } 
+    };
+
+
     return (
         <>
             <div className="relative w-full tracking-wider">
@@ -154,9 +163,21 @@ function Navbar() {
                     <h2 className="text-xl sm:text-3xl font-bold text-center w-full">
                         Order your favorite food and get it delivered.
                     </h2>
-                    <Link className="border rounded-full border-white px-3 py-2 font-bold hover:scale-105 duration-500 text-center sm:w-auto">
-                        Order now
-                    </Link>
+                    {!localStorage.getItem('authToken') ? (
+                        <button
+                            onClick={handleOrderClick}
+                            className="border rounded-full border-white px-3 py-2 font-bold hover:scale-105 duration-500 text-center sm:w-auto"
+                        >
+                            Order Now
+                        </button>
+                    ) : (
+                        <button 
+                            className="border rounded-full border-white px-3 py-2 font-bold hover:scale-105 duration-500 text-center sm:w-auto"
+                        >
+                            Order Now
+                        </button>
+                    )}
+
                 </div>
 
 
