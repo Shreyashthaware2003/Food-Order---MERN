@@ -1,5 +1,7 @@
 import '../App.css';
 import React, { useState } from "react";
+import Badge from '@mui/material/Badge';
+import MailIcon from '@mui/icons-material/Mail';
 import { Link, useNavigate } from 'react-router-dom';
 import { FaSearch } from "react-icons/fa";
 import { FaBasketShopping } from "react-icons/fa6";
@@ -31,7 +33,7 @@ function Navbar() {
         if (!localStorage.getItem('authToken')) {
             // Redirect to the login page if the user is not logged in
             navigate('/signin');
-        } 
+        }
     };
 
 
@@ -85,9 +87,11 @@ function Navbar() {
                                     </>
                                 ) : (
                                     <>
-                                        <div className="flex justify-center items-center gap-2 border border-white rounded-full px-3 py-2 text-sm font-semibold hover:scale-105 duration-500 hover:bg-white cursor-pointer text-white hover:text-black">
-                                            My Cart <FaBasketShopping />
-                                        </div>
+                                        <Link to={'/cart'} className="flex justify-center items-center gap-2 border border-white rounded-full px-3 py-2 text-sm font-semibold hover:scale-105 duration-500 hover:bg-white cursor-pointer text-white hover:text-black">
+                                            <Badge className='flex justify-center items-center gap-2' badgeContent={4} color="primary">
+                                                My Cart <FaBasketShopping />
+                                            </Badge>
+                                        </Link>
                                         <div
                                             className="flex justify-center items-center gap-2 border border-white rounded-full px-3 py-2 text-sm font-semibold hover:scale-105 duration-500 bg-red-600 hover:text-white cursor-pointer text-white"
                                             onClick={handleLogout}
@@ -139,9 +143,9 @@ function Navbar() {
                                                 </>
                                             ) : (
                                                 <>
-                                                    <div className="flex justify-center items-center gap-2 border border-black rounded-full px-3 py-2 text-sm font-semibold hover:scale-105 duration-500 hover:bg-yellow-200 cursor-pointer">
+                                                    <Link to='/cart' className="flex justify-center items-center gap-2 border border-black rounded-full px-3 py-2 text-sm font-semibold hover:scale-105 duration-500 hover:bg-yellow-200 cursor-pointer">
                                                         My Cart <FaBasketShopping />
-                                                    </div>
+                                                    </Link>
                                                     <div
                                                         className="flex justify-center items-center gap-2 border border-black rounded-full px-3 py-2 text-sm font-semibold hover:scale-105 duration-500 hover:bg-red-600 hover:text-white cursor-pointer"
                                                         onClick={handleLogout}
@@ -171,7 +175,7 @@ function Navbar() {
                             Order Now
                         </button>
                     ) : (
-                        <button 
+                        <button
                             className="border rounded-full border-white px-3 py-2 font-bold hover:scale-105 duration-500 text-center sm:w-auto"
                         >
                             Order Now
