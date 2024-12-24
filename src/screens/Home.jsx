@@ -79,7 +79,7 @@ function Home() {
             <div>
 
                 <Navbar />
-                <div  className='w-full'>
+                <div className='w-full'>
                     {localStorage.getItem("authToken") ? (
                         <>
                             <div className='grid  grid-cols-1 items-center justify-center gap-8 py-10 px-10 '>
@@ -95,10 +95,8 @@ function Home() {
                                                         {foodItem.length !== 0 ? foodItem.filter((item) => item.CategoryName === data.CategoryName
                                                         ).map(filterItems => {
                                                             return (
-                                                                <div className='flex justify-center items-center hover:scale-105 duration-500 ' key={filterItems._id}><Card foodName={filterItems.name}
+                                                                <div className='flex justify-center items-center ' key={filterItems._id}><Card foodItem={filterItems}
                                                                     options={filterItems.options[0]}
-                                                                    imgSrc={filterItems.img}
-                                                                    // description={filterItems.description}
 
                                                                 ></Card></div>
                                                             )
