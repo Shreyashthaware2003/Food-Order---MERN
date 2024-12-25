@@ -1,194 +1,120 @@
-import '../App.css';
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { FaBars, FaTimes } from "react-icons/fa";
 import Badge from '@mui/material/Badge';
-import MailIcon from '@mui/icons-material/Mail';
-import { Link, useNavigate } from 'react-router-dom';
-import { FaSearch } from "react-icons/fa";
 import { FaBasketShopping } from "react-icons/fa6";
+import { RiLogoutBoxLine } from "react-icons/ri";
 import { PiSignInBold } from "react-icons/pi";
 import { LuUserRoundPen } from "react-icons/lu";
-import { FaBars } from "react-icons/fa";
-import { FaTimes } from "react-icons/fa";
-import { RiLogoutBoxLine } from "react-icons/ri";
+import { useCart } from "../components/ContextReducer";
 
 function Navbar() {
-
-    // Search
-    const [isSearchOpen, setIsSearchOpen] = useState(false);
-    const toggleSearchInput = () => setIsSearchOpen(!isSearchOpen);
-
-    // Menu
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [isScrolled, setIsScrolled] = useState(false);
+    const navigate = useNavigate();
+    const cartData = useCart();
+
     const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
-    // Logout functionality
-    const navigate = useNavigate();
     const handleLogout = () => {
         localStorage.removeItem("authToken");
         navigate("/signin");
     };
 
-    // order now functionality
     const handleOrderClick = () => {
         if (!localStorage.getItem('authToken')) {
-            // Redirect to the login page if the user is not logged in
             navigate('/signin');
         }
     };
 
+    useEffect(() => {
+        const handleScroll = () => {
+            setIsScrolled(window.scrollY > 50);
+        };
+
+        window.addEventListener("scroll", handleScroll);
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+        };
+    }, []);
 
     return (
-        <>
-            <div className="relative w-full tracking-wider">
-                {/* Background Image with Orange Overlay */}
-                <div className="relative w-full h-screen">
-                    <img src="bg.webp" alt="Background" className="absolute top-0 left-0 w-full h-full object-cover" />
-                    <div className="absolute top-0 left-0 w-full h-full bg-orange-600 md:opacity-0"></div> {/* Orange overlay */}
-                </div>
-
-                {/* Navbar */}
-                <div className="absolute top-0 left-0 w-full px-2 md:px-6 z-50">
-                    <div className="flex items-center justify-between py-4 px-4 bg-transparent">
-                        <div className="hidden md:block"></div>
-
-                        {/* Logo at the Center */}
-                        <div className="flex justify-start md:justify-center items-center w-96 md:pl-56 gap-2">
-                            <img src="dash.png" className="w-10" alt="" />
-                            <h1 className="font-bold text-2xl text-white uppercase tracking-widest">
-                                doordash
-                            </h1>
-                        </div>
-
-                        {/* Navigation Menu and Buttons */}
-                        <div className="flex items-center gap-4">
-                            <div className="hidden md:flex">
-                                <ul className="flex justify-center items-center gap-8 cursor-pointer font-semibold capitalize text-white">
-                                    {localStorage.getItem("authToken") && <Link>My Orders</Link>}
-                                </ul>
-                            </div>
-
-                            <div className="hidden md:flex items-center gap-4">
-                                {!localStorage.getItem("authToken") ? (
-                                    <>
-                                        <Link
-                                            to="/signup"
-                                            className="flex justify-center items-center gap-2 border border-white rounded-full px-3 py-2 text-sm font-semibold hover:scale-105 duration-500 hover:bg-white hover:text-black text-white"
-                                        >
-                                            <LuUserRoundPen />
-                                            SignUp
-                                        </Link>
-                                        <Link
-                                            to="/signin"
-                                            className="flex justify-center items-center gap-2 border border-white rounded-full px-3 py-2 text-sm bg-yellow-200 font-semibold hover:scale-105 duration-500 text-black"
-                                        >
-                                            <PiSignInBold />
-                                            SignIn
-                                        </Link>
-                                    </>
-                                ) : (
-                                    <>
-                                        <Link to={'/cart'} className="flex justify-center items-center gap-2 border border-white rounded-full px-3 py-2 text-sm font-semibold hover:scale-105 duration-500 hover:bg-white cursor-pointer text-white hover:text-black">
-                                            <Badge className='flex justify-center items-center gap-2' badgeContent={4} color="primary">
-                                                My Cart <FaBasketShopping />
-                                            </Badge>
-                                        </Link>
-                                        <div
-                                            className="flex justify-center items-center gap-2 border border-white rounded-full px-3 py-2 text-sm font-semibold hover:scale-105 duration-500 bg-red-600 hover:text-white cursor-pointer text-white"
-                                            onClick={handleLogout}
-                                        >
-                                            Logout <RiLogoutBoxLine />
-                                        </div>
-                                    </>
-                                )}
-                            </div>
-
-                            {/* Hamburger Menu for Mobile */}
-                            <div className="md:hidden relative">
-                                <button className="text-2xl text-white my-2" onClick={toggleMenu}>
-                                    {isMenuOpen ? <FaTimes /> : <FaBars />}
-                                </button>
-
-                                {/* Mobile Menu */}
-                                {isMenuOpen && (
-                                    <div
-                                        className="absolute top-10 right-0 p-4 shadow-xl rounded-md bg-white w-56 text-black transition-all duration-300 z-60"
-                                        style={{
-                                            animation: isMenuOpen
-                                                ? "slideDown 0.3s ease-in-out"
-                                                : "slideUp 0.9s ease-in-out",
-                                        }}
-                                    >
-                                        <ul className="flex flex-col justify-center items-center gap-4 font-semibold capitalize">
-                                            <Link>home</Link>
-                                            {localStorage.getItem("authToken") && <Link>My Orders</Link>}
-                                        </ul>
-
-                                        <div className="flex flex-col gap-4 mt-4">
-                                            {!localStorage.getItem("authToken") ? (
-                                                <>
-                                                    <Link
-                                                        to="/signup"
-                                                        className="flex justify-center items-center gap-2 border border-black rounded-full px-3 py-2 text-sm font-semibold hover:scale-105 duration-500 hover:bg-red-600 hover:text-white"
-                                                    >
-                                                        <LuUserRoundPen />
-                                                        SignUp
-                                                    </Link>
-                                                    <Link
-                                                        to="/signin"
-                                                        className="flex justify-center items-center gap-2 border border-black rounded-full px-3 py-2 text-sm bg-yellow-200 font-semibold hover:scale-105 duration-500"
-                                                    >
-                                                        <PiSignInBold />
-                                                        SignIn
-                                                    </Link>
-                                                </>
-                                            ) : (
-                                                <>
-                                                    <Link to='/cart' className="flex justify-center items-center gap-2 border border-black rounded-full px-3 py-2 text-sm font-semibold hover:scale-105 duration-500 hover:bg-yellow-200 cursor-pointer">
-                                                        My Cart <FaBasketShopping />
-                                                    </Link>
-                                                    <div
-                                                        className="flex justify-center items-center gap-2 border border-black rounded-full px-3 py-2 text-sm font-semibold hover:scale-105 duration-500 hover:bg-red-600 hover:text-white cursor-pointer"
-                                                        onClick={handleLogout}
-                                                    >
-                                                        Logout <RiLogoutBoxLine />
-                                                    </div>
-                                                </>
-                                            )}
-                                        </div>
-                                    </div>
-                                )}
-                            </div>
-                        </div>
+        <div className="relative w-full">
+            {/* Navbar */}
+            <div
+                className={`fixed top-0 left-0 w-full z-50 px-4 md:px-8 py-3 flex items-center justify-between transition-all duration-300 ${isScrolled ? "bg-orange-600 shadow-lg" : "bg-transparent"
+                    }`}
+            >
+                <div className={`hidden md:block ${isScrolled ? 'hidden' : 'block'}`}></div>
+                <div className={`flex items-center justify-between py-4 px-4 bg-transparent ${isScrolled ? 'w-full' : ''}`}>
+                    <div className={`flex justify-start items-center w-96  gap-2 ${isScrolled ? 'pl-0 w-full justify-start' : 'md:pl-56 w-96 md:justify-center'}`}>
+                        <img src="dash.png" className="w-10" alt="Logo" />
+                        <h1 className="text-white text-xl md:text-2xl font-bold uppercase">
+                            DoorDash
+                        </h1>
                     </div>
                 </div>
 
-                {/* Text Centered on Image */}
-                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col justify-center items-center w-full px-4 sm:px-0 gap-4 text-white">
-                    <h2 className="text-xl sm:text-3xl font-bold text-center w-full">
-                        Order your favorite food and get it delivered.
-                    </h2>
-                    {!localStorage.getItem('authToken') ? (
-                        <button
-                            onClick={handleOrderClick}
-                            className="border rounded-full border-white px-3 py-2 font-bold hover:scale-105 duration-500 text-center sm:w-auto"
-                        >
-                            Order Now
-                        </button>
+                <div className={`hidden md:flex items-center gap-4 ${isScrolled?'w-[376px]':''} `}>
+                    {localStorage.getItem("authToken") && <Link className="text-white">My Orders</Link>}
+                    {!localStorage.getItem("authToken") ? (
+                        <>
+                            <Link
+                                to="/signup"
+                                className="flex justify-center items-center gap-2 hover:scale-105 duration-500 text-white border border-white rounded-full px-3 py-2 text-sm font-semibold hover:bg-white hover:text-black"
+                            >
+                                SignUp<LuUserRoundPen />
+                            </Link>
+                            <Link
+                                to="/signin"
+                                className="flex justify-center items-center gap-2 hover:scale-105 duration-500 text-black bg-yellow-200 border border-black rounded-full px-3 py-2 text-sm font-semibold"
+                            >
+                                SignIn <PiSignInBold />
+                            </Link>
+                        </>
                     ) : (
-                        <button
-                            className="border rounded-full border-white px-3 py-2 font-bold hover:scale-105 duration-500 text-center sm:w-auto"
-                        >
-                            Order Now
-                        </button>
+                        <>
+                            <Link
+                                to="/cart"
+                                className="text-white flex justify-center items-center gap-2 hover:scale-105 duration-500 hover:bg-yellow-200 hover:text-black  hover:border-black border border-white rounded-full px-3 py-2 text-sm font-semibold"
+                            >
+                                <Badge badgeContent={cartData.length} className="flex justify-center items-center gap-2" color="primary">
+                                    My Cart<FaBasketShopping />
+                                </Badge>
+                            </Link>
+                            <button
+                                onClick={handleLogout}
+                                className="flex justify-center items-center gap-2 hover:scale-105 duration-500 text-white bg-red-600 border border-black rounded-full px-3 py-2 text-sm font-semibold"
+                            >
+                                Logout<RiLogoutBoxLine />
+                            </button>
+                        </>
                     )}
-
                 </div>
 
-
-
-
+                <button
+                    className="text-white text-2xl md:hidden"
+                    onClick={toggleMenu}
+                >
+                    {isMenuOpen ? <FaTimes /> : <FaBars />}
+                </button>
             </div>
-        </>
+
+            {/* Hero Section with Background */}
+            <div className="w-full h-screen bg-cover bg-center" style={{ backgroundImage: `url('bg.webp')` }}>
+                <div className="absolute inset-0 flex flex-col justify-center items-center text-center text-white">
+                    <h2 className="text-3xl md:text-5xl font-bold w-1/2">
+                        Order your favorite food and get it delivered.
+                    </h2>
+                    <button
+                        onClick={handleOrderClick}
+                        className="mt-6 border border-white px-6 py-3 rounded-full text-lg font-semibold hover:bg-white hover:text-black duration-500"
+                    >
+                        Order Now
+                    </button>
+                </div>
+            </div>
+        </div >
     );
 }
 

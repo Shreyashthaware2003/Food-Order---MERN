@@ -43,7 +43,7 @@ function Cart() {
                     <h1 className="w-1/5 text-center">Action</h1>
                 </div>
                 <hr className="border border-black my-4" />
-                {data.map((item) => (
+                {data.map((item,index) => (
                     <div
                         key={item.id}
                         className="flex justify-between items-center border-b py-3"
@@ -58,7 +58,7 @@ function Cart() {
                         </div>
                         <div className="flex justify-center w-1/5 text-red-600 cursor-pointer group">
                             <FaRegTrashAlt className="group-hover:hidden" />
-                            <FaTrashAlt className="group-hover:block hidden" />
+                            <FaTrashAlt className="group-hover:block hidden" onClick={() => { dispatch({ type: "REMOVE", index: index }) }} />
                         </div>
                     </div>
                 ))}
