@@ -69,22 +69,26 @@ function Cart() {
                 <h2 className="text-lg font-bold mb-4">Your Cart</h2>
 
                 <div className="flex-1 overflow-y-auto">
-                    {data.map((item) => (
+                    {data.map((item,index) => (
                         <div
                             key={item.id}
                             className="flex justify-between items-center border-b py-3"
                         >
-                            <div className="w-1/3">
+                            <div className="w-1/2">
                                 <h3 className="text-sm font-medium">{item.name}</h3>
                                 <p className="text-xs text-gray-500">
                                     ${item.price.toFixed(2)} x {item.qty || 1}
                                 </p>
                             </div>
 
-                            <div className="w-1/5 text-sm font-medium text-right">
+                            <div className="w-1/4 text-sm font-medium text-right">
                                 ${(item.price * (item.qty || 1)).toFixed(2)}
                             </div>
-                            <div className="w-1/5 text-sm font-medium">{item.size}</div> {/* Display Size */}
+                            <div className="w-1/4 text-sm font-medium text-center">{item.size}</div> {/* Display Size */}
+                            <div className="flex justify-center w-1/4 text-red-600 cursor-pointer group">
+                            <FaRegTrashAlt className="group-hover:hidden" />
+                            <FaTrashAlt className="group-hover:block hidden" onClick={() => { dispatch({ type: "REMOVE", index: index }) }} />
+                        </div>
                         </div>
                     ))}
                 </div>

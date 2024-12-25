@@ -75,7 +75,7 @@ function Card(props) {
                     </div>
                 </div>
                 <hr />
-                <button className='bg-orange-500 px-3 py-2 font-semibold text-white rounded-md hover:scale-105 duration-200' onClick={handleAddToCart}>Add to Cart</button>
+                <button className='bg-[#F44322] px-3 py-2 font-semibold text-white rounded-md hover:scale-105 duration-200' onClick={handleAddToCart}>Add to Cart</button>
             </div>
         </>
     )
