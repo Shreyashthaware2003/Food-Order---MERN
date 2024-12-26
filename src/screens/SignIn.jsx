@@ -85,7 +85,7 @@ function SignIn() {
 
               <div className="flex flex-col items-end w-full">
                 <button className="bg-gradient-to-r from-orange-500 to-orange-600 text-white py-2 px-4 rounded-md font-medium hover:scale-105 transition-transform">
-                  Sign In
+                  SignIn
                 </button>
                 {/* <p className="text-sm mt-4">
                   Don't have an account?{" "}
