@@ -76,7 +76,7 @@ function SignUp() {
                   id="name"
                   type="text"
                   className="border rounded-md py-1 px-2"
-                  placeholder="Enter Your Name"
+                  placeholder="Enter Your Fullname"
                   name="name"
                   value={credentials.name}
                   onChange={onChange}

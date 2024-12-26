@@ -25,6 +25,7 @@ function SignIn() {
 
     if (json.success) {
       toast.success("Login successful! Redirecting...");
+      localStorage.setItem("userEmail", credentials.email);
       localStorage.setItem("authToken", json.authToken);
       setTimeout(() => navigate("/"), 2000); // Redirect after 2 seconds
     } else {

@@ -25,6 +25,43 @@ function Cart() {
         );
     }
 
+    const handleCheckOut = async () => {
+        let userEmail = localStorage.getItem("userEmail");
+        if (!userEmail) {
+            alert("User not logged in.");
+            return;
+        }
+
+        try {
+            let response = await fetch("http://localhost:3000/api/orderData", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    order_data: data,
+                    email: userEmail,
+                    order_date: new Date().toDateString(),
+                }),
+            });
+
+            if (response.ok) {
+                dispatch({ type: "DROP" });
+                alert("Order placed successfully!");
+            } else {
+                let errorData = await response.json();
+                console.error("Checkout Error:", errorData);
+                alert("Failed to place order. Please try again.");
+            }
+        } catch (error) {
+            console.error("Network Error:", error);
+            alert("Network error. Please try again later.");
+        }
+    };
+
+
+
+
     const totalPrice = data.reduce(
         (total, item) => total + item.price * (item.quantity || 1),
         0
@@ -99,7 +136,7 @@ function Cart() {
                             <span className="text-sm font-medium">Total</span>
                             <span className="text-lg font-bold">${totalPrice.toFixed(2)}</span>
                         </div>
-                        <button className="w-full bg-red-500 text-white py-2 rounded hover:bg-red-600 transition">
+                        <button className="w-full bg-red-500 text-white py-2 rounded hover:bg-red-600 transition" onClick={handleCheckOut}>
                             Checkout
                         </button>
                     </div>
