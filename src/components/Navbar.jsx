@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FaBars, FaTimes } from "react-icons/fa";
 import Badge from '@mui/material/Badge';
@@ -13,6 +13,7 @@ function Navbar() {
     const [isScrolled, setIsScrolled] = useState(false);
     const navigate = useNavigate();
     const cartData = useCart();
+    const endOfNavbarRef = useRef(null);
 
     const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
@@ -24,6 +25,8 @@ function Navbar() {
     const handleOrderClick = () => {
         if (!localStorage.getItem('authToken')) {
             navigate('/signin');
+        } else if (endOfNavbarRef.current) {
+            endOfNavbarRef.current.scrollIntoView({ behavior: "smooth" });
         }
     };
 
@@ -42,12 +45,12 @@ function Navbar() {
         <div className="relative w-full">
             {/* Navbar */}
             <div
-                className={`fixed top-0 left-0 w-full z-50 px-4 md:px-8  md:py-3 flex items-center justify-between transition-all duration-300 ${isScrolled ? "bg-[#F44322] shadow-lg" : "bg-transparent"
+                className={`fixed top-0 left-0 w-full z-50 px-4 md:px-8 md:py-3 flex items-center justify-between transition-all duration-300 ${isScrolled ? "bg-[#F44322] shadow-lg" : "bg-transparent"
                     }`}
             >
                 <div className={`hidden md:block ${isScrolled ? 'hidden' : 'block'}`}></div>
                 <div className={`flex items-center justify-between py-4 px-2 md:px-4 bg-transparent ${isScrolled ? 'w-full' : ''}`}>
-                    <div className={`flex justify-start items-center md:w-96  gap-2 ${isScrolled ? 'pl-0 w-full justify-start' : 'md:pl-56  md:justify-center'}`}>
+                    <div className={`flex justify-start items-center transition-all duration-300 md:w-96 gap-2 ${isScrolled ? 'pl-0 w-full justify-start' : 'md:pl-56 md:justify-center'}`}>
                         <img src="dash.png" className="w-10" alt="Logo" />
                         <h1 className="text-white text-xl md:text-2xl font-bold uppercase">
                             DoorDash
@@ -55,7 +58,7 @@ function Navbar() {
                     </div>
                 </div>
 
-                <div className={`hidden md:flex items-center gap-4 ${isScrolled ? 'w-[376px] justify-end' : ''} `}>
+                <div className={`hidden md:flex items-center gap-4 ${isScrolled ? 'w-[376px] justify-end' : ''}`}>
                     {localStorage.getItem("authToken") && <Link className="text-white">My Orders</Link>}
                     {!localStorage.getItem("authToken") ? (
                         <>
@@ -76,7 +79,7 @@ function Navbar() {
                         <>
                             <Link
                                 to="/cart"
-                                className="text-white flex justify-center items-center gap-2 hover:scale-105 duration-500 hover:bg-yellow-200 hover:text-black  hover:border-black border border-white rounded-full px-3 py-2 text-sm font-semibold"
+                                className="text-white flex justify-center items-center gap-2 hover:scale-105 duration-500 hover:bg-yellow-200 hover:text-black hover:border-black border border-white rounded-full px-3 py-2 text-sm font-semibold"
                             >
                                 <Badge badgeContent={cartData.length} className="flex justify-center items-center gap-2" color="primary">
                                     My Cart<FaBasketShopping />
@@ -164,7 +167,10 @@ function Navbar() {
                     </button>
                 </div>
             </div>
-        </div >
+
+            {/* End of Navbar Target Section */}
+            <div ref={endOfNavbarRef} />
+        </div>
     );
 }
 

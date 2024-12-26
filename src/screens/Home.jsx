@@ -82,7 +82,7 @@ function Home() {
                 <div className='w-full'>
                     {localStorage.getItem("authToken") ? (
                         <>
-                            <div className='grid  grid-cols-1 items-center justify-center gap-8 py-10 px-10 '>
+                            <div className='grid  grid-cols-1 items-center justify-center gap-8 py-20 px-10 '>
                                 {
                                     foodCat.length !== 0 ? (
                                         foodCat.map((data) => {

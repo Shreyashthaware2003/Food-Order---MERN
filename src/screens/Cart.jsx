@@ -31,79 +31,81 @@ function Cart() {
     );
 
     return (
-        <div className="flex h-screen py-10 px-10 gap-10">
-            {/* Left side: Order Preview */}
-            <div className="hidden md:flex flex-col flex-1 bg-gray-100 p-6 overflow-y-auto border border-black  rounded-2xl">
-                {/* <h2 className="text-lg font-bold mb-4">Order Preview</h2> */}
-                <div className="flex justify-between items-center">
-                    <h1 className="w-1/5 px-6">Food Name</h1>
-                    <h1 className="w-1/5 text-center">Quantity</h1>
-                    <h1 className="w-1/5 text-center">Size</h1>
-                    <h1 className="w-1/5 text-center">Price</h1>
-                    <h1 className="w-1/5 text-center">Action</h1>
-                </div>
-                <hr className="border border-black my-4" />
-                {data.map((item,index) => (
-                    <div
-                        key={item.id}
-                        className="flex justify-between items-center border-b py-3"
-                    >
-                        <h3 className="text-sm font-medium w-1/5 px-6 ">{item.name}</h3>
-                        <p className="text-xs text-gray-500 w-1/5 flex justify-center items-center">
-                            ${item.price.toFixed(2)} x {item.qty}
-                        </p>
-                        <p className="text-sm font-medium w-1/5 flex justify-center items-center">{item.size}</p> {/* Display Size */}
-                        <div className="text-sm font-medium w-1/5 flex justify-center items-center">
-                            ${(item.price * (item.qty || 1)).toFixed(2)}
-                        </div>
-                        <div className="flex justify-center w-1/5 text-red-600 cursor-pointer group">
-                            <FaRegTrashAlt className="group-hover:hidden" />
-                            <FaTrashAlt className="group-hover:block hidden" onClick={() => { dispatch({ type: "REMOVE", index: index }) }} />
-                        </div>
+        <>
+            <div className="flex h-screen py-10 px-10 gap-10">
+                {/* Left side: Order Preview */}
+                <div className="hidden md:flex flex-col flex-1 bg-gray-100 p-6 overflow-y-auto border border-black  rounded-2xl">
+                    {/* <h2 className="text-lg font-bold mb-4">Order Preview</h2> */}
+                    <div className="flex justify-between items-center">
+                        <h1 className="w-1/5 px-6">Food Name</h1>
+                        <h1 className="w-1/5 text-center">Quantity</h1>
+                        <h1 className="w-1/5 text-center">Size</h1>
+                        <h1 className="w-1/5 text-center">Price</h1>
+                        <h1 className="w-1/5 text-center">Action</h1>
                     </div>
-                ))}
-            </div>
-
-            {/* Right side: Cart Details */}
-            <div className="w-80 bg-white shadow-lg flex flex-col p-4 border-l rounded-2xl border border-black">
-                <h2 className="text-lg font-bold mb-4">Your Cart</h2>
-
-                <div className="flex-1 overflow-y-auto">
-                    {data.map((item,index) => (
+                    <hr className="border border-black my-4" />
+                    {data.map((item, index) => (
                         <div
                             key={item.id}
                             className="flex justify-between items-center border-b py-3"
                         >
-                            <div className="w-1/2">
-                                <h3 className="text-sm font-medium">{item.name}</h3>
-                                <p className="text-xs text-gray-500">
-                                    ${item.price.toFixed(2)} x {item.qty || 1}
-                                </p>
-                            </div>
-
-                            <div className="w-1/4 text-sm font-medium text-right">
+                            <h3 className="text-sm font-medium w-1/5 px-6 ">{item.name}</h3>
+                            <p className="text-xs text-gray-500 w-1/5 flex justify-center items-center">
+                                ${item.price.toFixed(2)} x {item.qty}
+                            </p>
+                            <p className="text-sm font-medium w-1/5 flex justify-center items-center">{item.size}</p> {/* Display Size */}
+                            <div className="text-sm font-medium w-1/5 flex justify-center items-center">
                                 ${(item.price * (item.qty || 1)).toFixed(2)}
                             </div>
-                            <div className="w-1/4 text-sm font-medium text-center">{item.size}</div> {/* Display Size */}
-                            <div className="flex justify-center w-1/4 text-red-600 cursor-pointer group">
-                            <FaRegTrashAlt className="group-hover:hidden" />
-                            <FaTrashAlt className="group-hover:block hidden" onClick={() => { dispatch({ type: "REMOVE", index: index }) }} />
-                        </div>
+                            <div className="flex justify-center w-1/5 text-red-600 cursor-pointer group">
+                                <FaRegTrashAlt className="group-hover:hidden" />
+                                <FaTrashAlt className="group-hover:block hidden" onClick={() => { dispatch({ type: "REMOVE", index: index }) }} />
+                            </div>
                         </div>
                     ))}
                 </div>
 
-                <div className="border-t pt-4">
-                    <div className="flex justify-between items-center mb-4">
-                        <span className="text-sm font-medium">Total</span>
-                        <span className="text-lg font-bold">${totalPrice.toFixed(2)}</span>
+                {/* Right side: Cart Details */}
+                <div className="w-80 bg-white shadow-lg flex flex-col p-4 border-l rounded-2xl border border-black">
+                    <h2 className="text-lg font-bold mb-4">Your Cart</h2>
+
+                    <div className="flex-1 overflow-y-auto">
+                        {data.map((item, index) => (
+                            <div
+                                key={item.id}
+                                className="flex justify-between items-center border-b py-3"
+                            >
+                                <div className="w-1/2">
+                                    <h3 className="text-sm font-medium">{item.name}</h3>
+                                    <p className="text-xs text-gray-500">
+                                        ${item.price.toFixed(2)} x {item.qty || 1}
+                                    </p>
+                                </div>
+
+                                <div className="w-1/4 text-sm font-medium text-right">
+                                    ${(item.price * (item.qty || 1)).toFixed(2)}
+                                </div>
+                                <div className="w-1/4 text-sm font-medium text-center">{item.size}</div> {/* Display Size */}
+                                <div className="flex justify-center w-1/4 text-red-600 cursor-pointer group">
+                                    <FaRegTrashAlt className="group-hover:hidden" />
+                                    <FaTrashAlt className="group-hover:block hidden" onClick={() => { dispatch({ type: "REMOVE", index: index }) }} />
+                                </div>
+                            </div>
+                        ))}
                     </div>
-                    <button className="w-full bg-red-500 text-white py-2 rounded hover:bg-red-600 transition">
-                        Checkout
-                    </button>
+
+                    <div className="border-t pt-4">
+                        <div className="flex justify-between items-center mb-4">
+                            <span className="text-sm font-medium">Total</span>
+                            <span className="text-lg font-bold">${totalPrice.toFixed(2)}</span>
+                        </div>
+                        <button className="w-full bg-red-500 text-white py-2 rounded hover:bg-red-600 transition">
+                            Checkout
+                        </button>
+                    </div>
                 </div>
             </div>
-        </div>
+        </>
     );
 }
 

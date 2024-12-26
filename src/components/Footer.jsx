@@ -6,7 +6,7 @@ function Footer() {
       <footer className="w-full border ">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 
-          <div className="py-10 flex justify-between items-center flex-col gap-8 xl:flex-row">
+          <div className="py-10 md:py-4 flex justify-between items-center flex-col gap-8 xl:flex-row">
             <div className="flex flex-nowrap items-center xl:flex-row gap-2 ">
               <img
                 src="dash.png"

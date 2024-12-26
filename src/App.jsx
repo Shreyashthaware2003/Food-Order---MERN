@@ -1,4 +1,5 @@
 // import './App.css'
+import { ToastContainer } from "react-toastify";
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from "./screens/Home"
 import SignIn from './screens/SignIn';
@@ -9,6 +10,7 @@ function App() {
 
   return (
     <>
+      <ToastContainer />
       <CartProvider>
         <BrowserRouter>
           <Routes>
