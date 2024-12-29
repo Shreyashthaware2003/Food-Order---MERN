@@ -46,23 +46,31 @@ function SignUp() {
       <ToastContainer />
       <div className="flex flex-col justify-center items-center flex-nowrap w-full h-screen">
         {/* Navbar */}
-        <div className="flex justify-between items-center w-full py-4 px-10 shadow-lg">
+        <div className="flex justify-between items-center w-full py-4 px-2 md:px-10 shadow-lg">
           <div className="flex justify-center items-center gap-2">
-            <img src="dash.png" className="grayscale filter brightness-0 w-10" alt="Logo" />
-            <h1 className="text-black text-xl md:text-2xl font-bold uppercase">DoorDash</h1>
+            <img
+              src="dash.png"
+              className="grayscale filter brightness-0 w-10"
+              alt="Logo"
+            />
+            <h1 className="text-black text-xl md:text-2xl font-bold uppercase">
+              doordash
+            </h1>
           </div>
           <div>
-            <Link to="/signin" className="bg-[#F44322] text-white px-3 py-2 rounded-md font-semibold hover:bg-orange-500">
+            <Link
+              to={"/signin"}
+              className="bg-[#F44322] text-white px-2 md:px-3 py-1 md:py-2 rounded-md font-semibold hover:bg-orange-500 text-sm md:text-base"
+            >
               Login Account
             </Link>
           </div>
         </div>
-
-        <div className="grid grid-cols-2 justify-center items-center w-full h-full p-4">
-          <div className="flex flex-col flex-nowrap justify-center md:justify-end items-center md:items-end">
+        <div className="grid grid-cols-1 md:grid-cols-2 justify-center items-center w-full h-full p-4">
+          <div className="md:flex flex-col flex-nowrap justify-center md:justify-end items-center md:items-end hidden">
             <div>
               <h1 className="text-2xl md:text-5xl font-bold">Ready to <br /> satisfy your cravings?</h1>
-              <p className="text-lg my-2">Sign up for <span className="text-[#F44322] font-bold">DoorDash</span> and discover your next favorite meal</p>
+              <p className="text-base md:text-lg my-2">Sign up for <span className="text-[#F44322] font-bold">DoorDash</span> and discover your next favorite meal</p>
             </div>
           </div>
           <form onSubmit={handleSubmit} className="flex justify-center items-center flex-nowrap rounded-md">

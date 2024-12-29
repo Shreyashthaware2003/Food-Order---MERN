@@ -41,7 +41,7 @@ function SignIn() {
     <>
       <div className="flex flex-col flex-nowrap justify-center items-center w-full h-screen">
         {/* Navbar */}
-        <div className="flex justify-between items-center w-full py-4 px-10 shadow-lg">
+        <div className="flex justify-between items-center w-full py-4 px-2 md:px-10 shadow-lg">
           <div className="flex justify-center items-center gap-2">
             <img
               src="dash.png"
@@ -55,14 +55,14 @@ function SignIn() {
           <div>
             <Link
               to={"/signup"}
-              className="bg-[#F44322] text-white px-3 py-2 rounded-md font-semibold hover:bg-orange-500"
+              className="bg-[#F44322] text-white px-2 md:px-3 py-1 md:py-2 rounded-md font-semibold hover:bg-orange-500 text-sm md:text-base"
             >
               Create Account
             </Link>
           </div>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 justify-center items-center h-full p-4 w-full">
-          <div className="flex flex-col flex-nowrap justify-center md:justify-end items-center md:items-end">
+          <div className="hidden md:flex flex-col flex-nowrap justify-center md:justify-end items-center md:items-end">
             <div>
               <h1 className="text-2xl md:text-5xl font-bold">
                 Craving <br />
