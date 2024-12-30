@@ -5,7 +5,7 @@ const orders = [
     {
         id: 1,
         item: "Chicken Biryani",
-        image: "Chicken-Biryani.jpg", // Replace with actual image URLs
+        image: "/public/Chicken-Biryani.jpg", // Replace with actual image URLs
         price: 12.99,
         date: "2024-12-28",
         status: "Delivered",
@@ -13,7 +13,7 @@ const orders = [
     {
         id: 2,
         item: "Margherita Pizza",
-        image: "margherita-pizza.jpg",
+        image: "/public/margherita-pizza.jpg",
         price: 9.99,
         date: "2024-12-27",
         status: "In Progress",
@@ -21,7 +21,7 @@ const orders = [
     {
         id: 3,
         item: "Pasta Alfredo",
-        image: "Fettuccine-Alfredo.jpg",
+        image: "/public/Fettuccine-Alfredo.jpg",
         price: 10.49,
         date: "2024-12-25",
         status: "Cancelled",
