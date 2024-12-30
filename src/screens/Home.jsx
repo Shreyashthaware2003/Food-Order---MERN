@@ -186,7 +186,7 @@ function Home() {
                                         <div className="flex justify-center items-center gap-4">
                                             <button
                                                 onClick={handlePrev}
-                                                className="bg-white shadow-md px-3 py-3 rounded-lg hover:bg-yellow-500 hover:text-white"
+                                                className="bg-white shadow-md px-3 py-3 rounded-lg hover:bg-yellow-500 duration-300 hover:text-white"
                                             >
                                                 <IoIosArrowBack />
                                             </button>
@@ -206,7 +206,7 @@ function Home() {
                                             </div>
                                             <button
                                                 onClick={handleNext}
-                                                className="bg-white shadow-md px-3 py-3 rounded-lg hover:bg-yellow-500 hover:text-white"
+                                                className="bg-white shadow-md px-3 py-3 rounded-lg hover:bg-yellow-500 duration-300 hover:text-white"
                                             >
                                                 <IoIosArrowForward />
                                             </button>

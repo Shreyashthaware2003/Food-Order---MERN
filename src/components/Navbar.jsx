@@ -59,7 +59,7 @@ function Navbar() {
                 </div>
 
                 <div className={`hidden md:flex items-center gap-4 ${isScrolled ? 'w-[376px] justify-end' : ''}`}>
-                    {localStorage.getItem("authToken") && <Link className="text-white">My Orders</Link>}
+                    {localStorage.getItem("authToken") && <Link to={'/myorder'} className="text-white">My Orders</Link>}
                     {!localStorage.getItem("authToken") ? (
                         <>
                             <Link
@@ -112,7 +112,7 @@ function Navbar() {
                     >
                         <ul className="flex flex-col justify-center items-center gap-4 font-semibold capitalize">
                             <Link>home</Link>
-                            {localStorage.getItem("authToken") && <Link>My Orders</Link>}
+                            {localStorage.getItem("authToken") && <Link to={'/myorder'}>My Orders</Link>}
                         </ul>
 
                         <div className="flex flex-col gap-4 mt-4">
@@ -154,7 +154,10 @@ function Navbar() {
             </div>
 
             {/* Hero Section with Background */}
-            <div className="w-full h-screen bg-cover bg-center" style={{ backgroundImage: `url('bg.webp')` }}>
+            <div className="w-full h-screen bg-cover bg-center md:bg-[url('bg.webp')] bg-[url('bg1.webp')] relative">
+                {/* Black overlay for small devices */}
+                <div className="absolute inset-0 bg-black opacity-40 md:hidden"></div>
+
                 <div className="absolute inset-0 flex flex-col justify-center items-center text-center text-white">
                     <h2 className="text-3xl md:text-5xl font-bold md:w-1/2">
                         Order your favorite food and get it delivered.
@@ -167,6 +170,8 @@ function Navbar() {
                     </button>
                 </div>
             </div>
+
+
 
             {/* End of Navbar Target Section */}
             <div ref={endOfNavbarRef} />
