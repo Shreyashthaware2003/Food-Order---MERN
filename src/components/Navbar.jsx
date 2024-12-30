@@ -154,7 +154,7 @@ function Navbar() {
             </div>
 
             {/* Hero Section with Background */}
-            <div className="w-full h-screen bg-cover bg-center bg-[url('bg1.webp')] md:bg-[url('bg.webp')] relative">
+            <div className="w-full h-screen bg-cover bg-center bg-[url('/public/bg1.webp')] md:bg-[url('/public/bg.webp')] relative">
                 {/* Black overlay for small devices */}
                 <div className="absolute inset-0 bg-black opacity-40 md:hidden"></div>
 
